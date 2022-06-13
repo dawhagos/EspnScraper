@@ -19,14 +19,14 @@ public class EspnScrape {
             playerList = new ArrayList<>(body.size() - 6);
             for (Element row : body) {
                 if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
-                    final String player = row.select("td:nth-of-type(2)").text();
-                    final String min = row.select("td:nth-of-type(4)").text();
+                    final String playerName = row.select("td:nth-of-type(2)").text();
+                    final String mins = row.select("td:nth-of-type(4)").text();
                     final String gp = row.select("td:nth-of-type(3)").text();
                     final String per = row.select(".sortcell").text();
-                    final double minutes = Double.parseDouble(min);
+                    final double minutesAverage = Double.parseDouble(mins);
                     final int gamesPlayed = Integer.parseInt(gp);
-                    final Double playerEfficiency = Double.parseDouble(per);
-                    Player newPlayer = new Player(player, minutes, gamesPlayed, playerEfficiency);
+                    final double playerEfficiencyRating = Double.parseDouble(per);
+                    Player newPlayer = new Player(playerName, minutesAverage, gamesPlayed, playerEfficiencyRating);
                     playerList.add(newPlayer);
                 }
             }

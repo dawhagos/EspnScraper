@@ -15,8 +15,8 @@ public class TableGenerator {
         System.out.println("BEST PLAYER EFFICIENCY RATING: (" + gamesPlayed + ") GAMES OR MORE");
         System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
         for (Player player : playerList) {
-            if (player.getGames() > gamesPlayed) {
-                System.out.print(player.display());
+            if (player.getGamesPlayed() > gamesPlayed) {
+                System.out.print(player);
             }
         }
     }
@@ -24,16 +24,16 @@ public class TableGenerator {
     /**
      * Generates a table ordered by minutes from players who have X PER rating or higher.
      *
-     * @param per minimum player efficiency rating.
+     * @param playerEfficiencyRating minimum player efficiency rating.
      */
-    public static void mostMinutesForPer(double per) {
-        System.out.println("MOST MINUTES AVERAGED PER GAME: (" + per + ") PER OR HIGHER");
+    public static void mostMinutesForPer(double playerEfficiencyRating) {
+        System.out.println("MOST MINUTES AVERAGED PER GAME: (" + playerEfficiencyRating + ") PER OR HIGHER");
         System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
         Collections.sort(playerList, Player.playerMinutesComparator);
         Collections.reverse(playerList);
         for (Player player : playerList) {
-            if (player.getPer() > per) {
-                System.out.print(player.display());
+            if (player.getPlayerEfficiencyRating() > playerEfficiencyRating) {
+                System.out.print(player);
             }
         }
     }
@@ -41,16 +41,16 @@ public class TableGenerator {
     /**
      * Generates a table ordered by the number of games played from players who have X PER rating or higher.
      *
-     * @param per minimum player efficiency rating.
+     * @param playerEfficiencyRating minimum player efficiency rating.
      */
-    public static void mostGamesForPer(double per) {
-        System.out.println("MOST GAMES PLAYED THIS SEASON: (" + per + ") PER OR HIGHER");
+    public static void mostGamesForPer(double playerEfficiencyRating) {
+        System.out.println("MOST GAMES PLAYED THIS SEASON: (" + playerEfficiencyRating + ") PER OR HIGHER");
         System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
         Collections.sort(playerList, Player.playerGamesPlayedComparator);
         Collections.reverse(playerList);
         for (Player player : playerList) {
-            if (player.getPer() > per) {
-                System.out.print(player.display());
+            if (player.getPlayerEfficiencyRating() > playerEfficiencyRating) {
+                System.out.print(player);
             }
         }
     }
@@ -63,7 +63,7 @@ public class TableGenerator {
         System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
         Collections.sort(playerList, Player.playerNameComparator);
         for (Player player : playerList) {
-            System.out.print(player.display());
+            System.out.print(player);
         }
     }
 
