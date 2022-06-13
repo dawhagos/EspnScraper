@@ -1,7 +1,6 @@
 package WebScrape;
 
-
-import java.util.Arrays;
+import java.util.Collections;
 
 import static WebScrape.EspnScrape.playerList;
 
@@ -15,9 +14,9 @@ public class TableGenerator {
     public static void perByGamesPlayed(int gamesPlayed) {
         System.out.println("BEST PLAYER EFFICIENCY RATING: (" + gamesPlayed + ") GAMES OR MORE");
         System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
-        for (int i = 0; i < playerList.length; i++) {
-            if (playerList[i].getGames() > gamesPlayed) {
-                System.out.print(playerList[i].display());
+        for (Player player : playerList) {
+            if (player.getGames() > gamesPlayed) {
+                System.out.print(player.display());
             }
         }
     }
@@ -25,16 +24,48 @@ public class TableGenerator {
     /**
      * Generates a table ordered by minutes from players who have X PER rating or higher.
      *
-     * @param eff minimum player efficiency rating.
+     * @param per minimum player efficiency rating.
      */
-    public static void mostMinutesForPer(double eff) {
-        System.out.println("MOST MINUTES AVERAGED PER GAME: (" + eff + ") PER OR HIGHER");
+    public static void mostMinutesForPer(double per) {
+        System.out.println("MOST MINUTES AVERAGED PER GAME: (" + per + ") PER OR HIGHER");
         System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
-        Arrays.sort(playerList);
-        for (int i = playerList.length - 1; i >= 0; i--) {
-            if (playerList[i].getPer() > eff) {
-                System.out.print(playerList[i].display());
+        Collections.sort(playerList, Player.playerMinutesComparator);
+        Collections.reverse(playerList);
+        for (Player player : playerList) {
+            if (player.getPer() > per) {
+                System.out.print(player.display());
             }
         }
     }
+
+    /**
+     * Generates a table ordered by the number of games played from players who have X PER rating or higher.
+     *
+     * @param per minimum player efficiency rating.
+     */
+    public static void mostGamesForPer(double per) {
+        System.out.println("MOST GAMES PLAYED THIS SEASON: (" + per + ") PER OR HIGHER");
+        System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
+        Collections.sort(playerList, Player.playerGamesPlayedComparator);
+        Collections.reverse(playerList);
+        for (Player player : playerList) {
+            if (player.getPer() > per) {
+                System.out.print(player.display());
+            }
+        }
+    }
+
+    /**
+     * Generates a table sorted in Alphabetical order.
+     */
+    public static void alpha() {
+        System.out.println("ALPHABETICAL ORDER");
+        System.out.format("%-29s| %s  | %s | %s\n", "PLAYER", "MINS", "GP", "PER");
+        Collections.sort(playerList, Player.playerNameComparator);
+        for (Player player : playerList) {
+            System.out.print(player.display());
+        }
+    }
+
+
 }
