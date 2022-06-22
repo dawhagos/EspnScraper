@@ -1,6 +1,7 @@
 package com.hagos.WebScrape.service;
 
 import com.hagos.WebScrape.model.Player;
+import com.hagos.WebScrape.model.Team;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -156,6 +157,35 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                 }
             }
             return playerList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Team> teamsExtractData() {
+        ArrayList<Team> teamList;
+        try {
+            final Document document = Jsoup.connect("http://www.espn.com/nba/hollinger/teamstats").get();
+            Elements body = document.select("table.tablehead tr");
+            teamList = new ArrayList<>(body.size() - 6);
+            for (Element row : body) {
+                if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("TEAM")) {
+
+                    Team newTeam = new Team();
+                    newTeam.setTeamName(row.select("td:nth-of-type(2)").text());
+                    newTeam.setOffensiveEfficiency(Double.parseDouble(row.select(".sortcell").text()));
+                    newTeam.setDefensiveEfficiency(Double.parseDouble(row.select("td:nth-of-type(12)").text()));
+                    newTeam.setEffectiveFieldGoalPercentage(Double.parseDouble(row.select("td:nth-of-type(9)").text()));
+                    newTeam.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(10)").text()));
+                    newTeam.setReboundRate(Double.parseDouble(row.select("td:nth-of-type(8)").text()));
+                    newTeam.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newTeam.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    teamList.add(newTeam);
+                }
+            }
+            return teamList;
         } catch (Exception e) {
             e.printStackTrace();
         }

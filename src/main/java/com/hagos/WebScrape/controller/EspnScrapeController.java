@@ -28,8 +28,20 @@ public class EspnScrapeController {
     }
 
     private ResponseEntity<?> allPlayers() {
-        log.info("[/default] GET endpoint invoked");
+        log.info("[/players] GET endpoint invoked");
         return ResponseEntity.ok(espnScrapeService.playersExtractData());
+    }
+
+    @GetMapping(value = "teams")
+    public String showAllTeams(Model model) {
+        Object allTeams = allTeams().getBody();
+        model.addAttribute("allteams", allTeams);
+        return "teams";
+    }
+
+    private ResponseEntity<?> allTeams() {
+        log.info("[/teams] GET endpoint invoked");
+        return ResponseEntity.ok(espnScrapeService.teamsExtractData());
     }
 
 

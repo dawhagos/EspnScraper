@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>2021-2022 Hollinger Team Statistics</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+
+</head>
+<body>
+<h1>2021-2022 Hollinger Advanced NBA Team Statistics</h1>
+<table id="table_id" class="table table-hover">
+    <thead>
+    <tr>
+        <th id="team" scope="col">TEAM</th>
+        <th id="off" scope="col">OFF</th>
+        <th id="def" scope="col">DEF</th>
+        <th id="efg" scope="col">EFG</th>
+        <th id="ts" scope="col">TS</th>
+        <th id="reb" scope="col">REB</th>
+        <th id="ar" scope="col">AR</th>
+        <th id="tr" scope="col">TR</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="team: ${allteams}">
+        <td th:text="${team.teamName}"></td>
+        <td th:text="${team.offensiveEfficiency}"></td>
+        <td th:text="${team.defensiveEfficiency}"></td>
+        <td th:text="${team.effectiveFieldGoalPercentage}"></td>
+        <td th:text="${team.trueShooting}"></td>
+        <td th:text="${team.reboundRate}"></td>
+        <td th:text="${team.assistRatio}"></td>
+        <td th:text="${team.turnoverRatio}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script>
+    $(document).ready(function() {
+        $('#table_id').DataTable();
+    });
+
+
+</script>
+</html>
