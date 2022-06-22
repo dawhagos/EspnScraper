@@ -1,7 +1,6 @@
 package com.hagos.WebScrape.service;
 
 import com.hagos.WebScrape.model.Player;
-import com.hagos.WebScrape.utils.TypeComparator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,151 +8,151 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 @Service
 public class EspnScrapeServiceImpl implements EspnScrapeService {
 
     @Override
-    public ArrayList<Player> playersExtractDefaultData() {
-        final String url = "http://www.espn.com/nba/hollinger/statistics";
+    public ArrayList<Player> playersExtractData() {
         ArrayList<Player> playerList;
         try {
-            final Document document = Jsoup.connect(url).get();
-            Elements body = document.select("table.tablehead tr");
-            playerList = new ArrayList<>(body.size() - 6);
-            for (Element row : body) {
+            final Document page1 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics").get();
+            final Document page2 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/2").get();
+            final Document page3 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/3").get();
+            final Document page4 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/4").get();
+            final Document page5 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/5").get();
+            final Document page6 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/6").get();
+            final Document page7 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/7").get();
+            final Document page8 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/8").get();
+
+            Elements body1 = page1.select("table.tablehead tr");
+            Elements body2 = page2.select("table.tablehead tr");
+            Elements body3 = page3.select("table.tablehead tr");
+            Elements body4 = page4.select("table.tablehead tr");
+            Elements body5 = page5.select("table.tablehead tr");
+            Elements body6 = page6.select("table.tablehead tr");
+            Elements body7 = page7.select("table.tablehead tr");
+            Elements body8 = page8.select("table.tablehead tr");
+
+            playerList = new ArrayList<>((body1.size() * 8) - 48);
+            for (Element row : body1) {
                 if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
-                    final String playerName = row.select("td:nth-of-type(2)").text();
-                    final String mins = row.select("td:nth-of-type(4)").text();
-                    final String games = row.select("td:nth-of-type(3)").text();
-                    final String per = row.select(".sortcell").text();
-                    final String shooting = row.select("td:nth-of-type(5)").text();
-                    final String assists = row.select("td:nth-of-type(6)").text();
-                    final String turnovers = row.select("td:nth-of-type(7)").text();
-                    final String wins = row.select("td:nth-of-type(14)").text();
-                    final double minutesAverage = Double.parseDouble(mins);
-                    final double trueShooting = Double.parseDouble(shooting);
-                    final double assistRatio = Double.parseDouble(assists);
-                    final double turnoverRatio = Double.parseDouble(turnovers);
-                    final double winsAdded = Double.parseDouble(wins);
-                    final int gamesPlayed = Integer.parseInt(games);
-                    final double playerEfficiencyRating = Double.parseDouble(per);
-                    Player newPlayer = new Player(playerName, gamesPlayed, minutesAverage, trueShooting, assistRatio, turnoverRatio, playerEfficiencyRating, winsAdded);
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
             }
-            return playerList;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Player> playersFirstNameAlphabetical() {
-        final String url = "http://www.espn.com/nba/hollinger/statistics";
-        ArrayList<Player> playerList;
-        try {
-            final Document document = Jsoup.connect(url).get();
-            Elements body = document.select("table.tablehead tr");
-            playerList = new ArrayList<>(body.size() - 6);
-            for (Element row : body) {
+            for (Element row : body2) {
                 if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
-                    final String playerName = row.select("td:nth-of-type(2)").text();
-                    final String mins = row.select("td:nth-of-type(4)").text();
-                    final String games = row.select("td:nth-of-type(3)").text();
-                    final String per = row.select(".sortcell").text();
-                    final String shooting = row.select("td:nth-of-type(5)").text();
-                    final String assists = row.select("td:nth-of-type(6)").text();
-                    final String turnovers = row.select("td:nth-of-type(7)").text();
-                    final String wins = row.select("td:nth-of-type(14)").text();
-                    final double minutesAverage = Double.parseDouble(mins);
-                    final double trueShooting = Double.parseDouble(shooting);
-                    final double assistRatio = Double.parseDouble(assists);
-                    final double turnoverRatio = Double.parseDouble(turnovers);
-                    final double winsAdded = Double.parseDouble(wins);
-                    final int gamesPlayed = Integer.parseInt(games);
-                    final double playerEfficiencyRating = Double.parseDouble(per);
-                    Player newPlayer = new Player(playerName, gamesPlayed, minutesAverage, trueShooting, assistRatio, turnoverRatio, playerEfficiencyRating, winsAdded);
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
             }
-            playerList.sort(TypeComparator.playerNameComparator);
-            return playerList;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Player> playersHighestMinutes() {
-        final String url = "http://www.espn.com/nba/hollinger/statistics";
-        ArrayList<Player> playerList;
-        try {
-            final Document document = Jsoup.connect(url).get();
-            Elements body = document.select("table.tablehead tr");
-            playerList = new ArrayList<>(body.size() - 6);
-            for (Element row : body) {
+            for (Element row : body3) {
                 if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
-                    final String playerName = row.select("td:nth-of-type(2)").text();
-                    final String mins = row.select("td:nth-of-type(4)").text();
-                    final String games = row.select("td:nth-of-type(3)").text();
-                    final String per = row.select(".sortcell").text();
-                    final String shooting = row.select("td:nth-of-type(5)").text();
-                    final String assists = row.select("td:nth-of-type(6)").text();
-                    final String turnovers = row.select("td:nth-of-type(7)").text();
-                    final String wins = row.select("td:nth-of-type(14)").text();
-                    final double minutesAverage = Double.parseDouble(mins);
-                    final double trueShooting = Double.parseDouble(shooting);
-                    final double assistRatio = Double.parseDouble(assists);
-                    final double turnoverRatio = Double.parseDouble(turnovers);
-                    final double winsAdded = Double.parseDouble(wins);
-                    final int gamesPlayed = Integer.parseInt(games);
-                    final double playerEfficiencyRating = Double.parseDouble(per);
-                    Player newPlayer = new Player(playerName, gamesPlayed, minutesAverage, trueShooting, assistRatio, turnoverRatio, playerEfficiencyRating, winsAdded);
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
             }
-            playerList.sort(TypeComparator.minutesComparator);
-            Collections.reverse(playerList);
-            return playerList;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Player> playersByMinutes(double minutes) {
-        final String url = "http://www.espn.com/nba/hollinger/statistics";
-        ArrayList<Player> playerList;
-        try {
-            final Document document = Jsoup.connect(url).get();
-            Elements body = document.select("table.tablehead tr");
-            playerList = new ArrayList<>(body.size() - 6);
-            for (Element row : body) {
+            for (Element row : body4) {
                 if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
-                    final String playerName = row.select("td:nth-of-type(2)").text();
-                    final String mins = row.select("td:nth-of-type(4)").text();
-                    final String games = row.select("td:nth-of-type(3)").text();
-                    final String per = row.select(".sortcell").text();
-                    final String shooting = row.select("td:nth-of-type(5)").text();
-                    final String assists = row.select("td:nth-of-type(6)").text();
-                    final String turnovers = row.select("td:nth-of-type(7)").text();
-                    final String wins = row.select("td:nth-of-type(14)").text();
-                    final double minutesAverage = Double.parseDouble(mins);
-                    final double trueShooting = Double.parseDouble(shooting);
-                    final double assistRatio = Double.parseDouble(assists);
-                    final double turnoverRatio = Double.parseDouble(turnovers);
-                    final double winsAdded = Double.parseDouble(wins);
-                    final int gamesPlayed = Integer.parseInt(games);
-                    final double playerEfficiencyRating = Double.parseDouble(per);
-                    if (minutesAverage > minutes) {
-                        Player newPlayer = new Player(playerName, gamesPlayed, minutesAverage, trueShooting, assistRatio, turnoverRatio, playerEfficiencyRating, winsAdded);
-                        playerList.add(newPlayer);
-                    }
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
+                    playerList.add(newPlayer);
+                }
+            }
+            for (Element row : body5) {
+                if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
+                    playerList.add(newPlayer);
+                }
+            }
+            for (Element row : body6) {
+                if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
+                    playerList.add(newPlayer);
+                }
+            }
+            for (Element row : body7) {
+                if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
+                    playerList.add(newPlayer);
+                }
+            }
+            for (Element row : body8) {
+                if (!row.select("td:nth-of-type(2)").text().equals("") && !row.select("td:nth-of-type(2)").text().equals("PLAYER")) {
+
+                    Player newPlayer = new Player();
+                    newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
+                    newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
+                    newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
+                    newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
+                    newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
+                    newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
+                    playerList.add(newPlayer);
                 }
             }
             return playerList;

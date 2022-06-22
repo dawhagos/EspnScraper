@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>2021-22 Hollinger NBA Player Statistics</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+
+</head>
+<body>
+<h1>2021-22 Hollinger Advanced NBA Player Statistics</h1>
+<table id="table_id" class="table table-hover">
+    <thead>
+    <tr>
+        <th id="name" scope="col">NAME</th>
+        <th id="gp" scope="col">GP</th>
+        <th id="min" scope="col">MIN</th>
+        <th id="ts" scope="col">TS%</th>
+        <th id="ar" scope="col">AR</th>
+        <th id="tr" scope="col">TR</th>
+        <th id="per" scope="col">PER</th>
+        <th id="wa" scope="col">WA</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="player: ${allplayers}">
+        <td th:text="${player.playerName}"></td>
+        <td th:text="${player.gamesPlayed}"></td>
+        <td th:text="${player.minutesAverage}"></td>
+        <td th:text="${player.trueShooting}"></td>
+        <td th:text="${player.assistRatio}"></td>
+        <td th:text="${player.turnoverRatio}"></td>
+        <td th:text="${player.playerEfficiencyRating}"></td>
+        <td th:text="${player.winsAdded}"></td>
+    </tr>
+    </tbody>
+</table>
+<div class="table_key">
+    <ul>
+        <span>Table Key:</span>
+        <li><span style="font-weight:bold">GP: </span>Games Played |</li>
+        <li><span style="font-weight:bold">MIN: </span>Minutes Average |</li>
+        <li><span style="font-weight:bold">TS: </span>True Shooting |</li>
+        <li><span style="font-weight:bold">AR: </span>Assist Ratio |</li>
+        <li><span style="font-weight:bold">TR: </span>True Shooting |</li>
+        <li><span style="font-weight:bold">PER: </span>Player Efficiency Rating |</li>
+        <li><span style="font-weight:bold">WA: </span>Wins Added |</li>
+    </ul>
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+        $('#table_id').DataTable();
+    });
+
+
+</script>
+</html>

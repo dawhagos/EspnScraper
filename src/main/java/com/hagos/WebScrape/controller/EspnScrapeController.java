@@ -4,9 +4,12 @@ import com.hagos.WebScrape.service.EspnScrapeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 @Log
 @RequestMapping(path = "/")
 @Tag(name = "2021-22 Hollinger NBA Player Statistics")
@@ -17,21 +20,17 @@ public class EspnScrapeController {
         this.espnScrapeService = espnScrapeService;
     }
 
-    @GetMapping(value = "default")
-    public ResponseEntity<?> allPlayers() {
+    @GetMapping(value = "players")
+    public String showAllPlayers(Model model) {
+        Object allPlayers = allPlayers().getBody();
+        model.addAttribute("allplayers", allPlayers);
+        return "default";
+    }
+
+    private ResponseEntity<?> allPlayers() {
         log.info("[/default] GET endpoint invoked");
-        return ResponseEntity.ok(espnScrapeService.playersExtractDefaultData());
+        return ResponseEntity.ok(espnScrapeService.playersExtractData());
     }
 
-    @GetMapping(value = "playershighestminutes")
-    public ResponseEntity<?> playersHighestMinutes() {
-        log.info("[/playershighestminutes] GET endpoint invoked");
-        return ResponseEntity.ok(espnScrapeService.playersHighestMinutes());
-    }
 
-    @GetMapping(path = "playersbyminutes/{minutes}")
-    public ResponseEntity<?> playersByMinutes(@PathVariable double minutes) {
-        log.info("[/playersbyminutes] GET endpoint invoked");
-        return ResponseEntity.ok(espnScrapeService.playersByMinutes(minutes));
-    }
 }
