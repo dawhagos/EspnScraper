@@ -20,11 +20,16 @@ public class EspnScrapeController {
         this.espnScrapeService = espnScrapeService;
     }
 
+    @GetMapping(value = "")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping(value = "players")
     public String showAllPlayers(Model model) {
         Object allPlayers = allPlayers().getBody();
         model.addAttribute("allplayers", allPlayers);
-        return "default";
+        return "players";
     }
 
     private ResponseEntity<?> allPlayers() {

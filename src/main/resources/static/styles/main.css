@@ -6,6 +6,23 @@ li {
     display: inline;
 }
 
+.link a{
+   color: #000000;
+   text-decoration: none;
+   background-color: none;
+}
+
+#switch {
+    position: relative;
+    left:-230px;
+    bottom:-33px;
+}
+
+#switch a {
+    text-decoration:none;
+    display: block;
+}
+
 body {
   display: flex;
   flex-direction: column;
