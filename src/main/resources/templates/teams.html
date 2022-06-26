@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>2021-2022 Hollinger Team Statistics</title>
+    <title>2021-2022 NBA Team Statistics</title>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
@@ -21,11 +21,11 @@
     <a href="/"><h1 class="center">2021-22 Hollinger Advanced NBA Team Statistics</h1></a>
 </div>
 
-<div class="link-2">
-<a href="/players" id="switch"><button type="submit" class="btn btn-outline-dark">PLAYERS</button></a>
-</div>
 
-<table id="table_id" class="table table-hover">
+<a href="/players"><button type="submit" id="switch" class="btn btn-secondary">PLAYERS</button></a>
+
+
+<table id="table_id" class="display nowrap dataTable dtr-inline collapsed" style="width: 100%; position: relative">
     <thead>
     <tr>
         <th id="team" scope="col">TEAM</th>
