@@ -3,7 +3,6 @@ package com.hagos.WebScrape.controller;
 import com.hagos.WebScrape.service.EspnScrapeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,26 +26,16 @@ public class EspnScrapeController {
 
     @GetMapping(value = "players")
     public String showAllPlayers(Model model) {
-        Object allPlayers = allPlayers().getBody();
-        model.addAttribute("allplayers", allPlayers);
-        return "players";
-    }
-
-    private ResponseEntity<?> allPlayers() {
         log.info("[/players] GET endpoint invoked");
-        return ResponseEntity.ok(espnScrapeService.playersExtractData());
+        model.addAttribute("allplayers", espnScrapeService.playersExtractData());
+        return "players";
     }
 
     @GetMapping(value = "teams")
     public String showAllTeams(Model model) {
-        Object allTeams = allTeams().getBody();
-        model.addAttribute("allteams", allTeams);
-        return "teams";
-    }
-
-    private ResponseEntity<?> allTeams() {
         log.info("[/teams] GET endpoint invoked");
-        return ResponseEntity.ok(espnScrapeService.teamsExtractData());
+        model.addAttribute("allteams", espnScrapeService.teamsExtractData());
+        return "teams";
     }
 
 

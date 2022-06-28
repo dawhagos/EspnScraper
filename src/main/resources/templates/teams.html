@@ -17,52 +17,55 @@
 </head>
 <body>
 <div class="wrapper" style="text-align:center">
-<div class="link">
-    <a href="/"><h1 class="center">2021-22 Hollinger Advanced NBA Team Statistics</h1></a>
-</div>
+    <div class="link">
+        <a href="/"><h1 class="center">2021-22 Hollinger Advanced NBA Team Statistics</h1></a>
+    </div>
 
 
-<a href="/players"><button type="submit" id="switch" class="btn btn-secondary">PLAYERS</button></a>
+    <a href="/players">
+        <button type="submit" id="switch" class="btn btn-secondary">PLAYERS</button>
+    </a>
 
 
-<table id="table_id" class="display nowrap dataTable dtr-inline collapsed" style="width: 100%; position: relative">
-    <thead>
-    <tr>
-        <th id="team" scope="col">TEAM</th>
-        <th id="off" scope="col">OFF</th>
-        <th id="def" scope="col">DEF</th>
-        <th id="efg" scope="col">EFG</th>
-        <th id="ts" scope="col">TS</th>
-        <th id="reb" scope="col">REB</th>
-        <th id="ar" scope="col">AR</th>
-        <th id="tr" scope="col">TR</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="team: ${allteams}">
-        <td th:text="${team.teamName}"></td>
-        <td th:text="${team.offensiveEfficiency}"></td>
-        <td th:text="${team.defensiveEfficiency}"></td>
-        <td th:text="${team.effectiveFieldGoalPercentage}"></td>
-        <td th:text="${team.trueShooting}"></td>
-        <td th:text="${team.reboundRate}"></td>
-        <td th:text="${team.assistRatio}"></td>
-        <td th:text="${team.turnoverRatio}"></td>
-    </tr>
-    </tbody>
-</table>
-<div class="table_key">
-    <ul>
-        Table Key:
-        <li><span style="font-weight:bold">OFF: </span>Offensive Efficiency |</li>
-        <li><span style="font-weight:bold">DEF: </span>Defensive Efficiency |</li>
-        <li><span style="font-weight:bold">EFG: </span>Effective Field Goal Percentage |</li>
-        <li><span style="font-weight:bold">TS: </span>True Shooting % |</li>
-        <li><span style="font-weight:bold">REB: </span>Rebound Rate |</li>
-        <li><span style="font-weight:bold">AR: </span>Assist Ratio |</li>
-        <li><span style="font-weight:bold">TR: </span>Turnover Ratio |</li>
-    </ul>
-</div>
+    <table id="table_id" class="display nowrap dataTable dtr-inline collapsed" style="width: 100%; position: relative">
+        <thead>
+        <tr>
+            <th id="team" scope="col">TEAM</th>
+            <th id="off" scope="col">OFF</th>
+            <th id="def" scope="col">DEF</th>
+            <th id="efg" scope="col">EFG</th>
+            <th id="ts" scope="col">TS</th>
+            <th id="reb" scope="col">REB</th>
+            <th id="ar" scope="col">AR</th>
+            <th id="tr" scope="col">TR</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="team: ${allteams}">
+            <td th:text="${team.teamName}"></td>
+            <td th:text="${team.offensiveEfficiency}"></td>
+            <td th:text="${team.defensiveEfficiency}"></td>
+            <td th:text="${team.effectiveFieldGoalPercentage}"></td>
+            <td th:text="${team.trueShooting}"></td>
+            <td th:text="${team.reboundRate}"></td>
+            <td th:text="${team.assistRatio}"></td>
+            <td th:text="${team.turnoverRatio}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="table_key">
+        <ul>
+            Table Key:
+            <li><span style="font-weight:bold">OFF: </span>Offensive Efficiency |</li>
+            <li><span style="font-weight:bold">DEF: </span>Defensive Efficiency |</li>
+            <li><span style="font-weight:bold">EFG: </span>Effective Field Goal Percentage |</li>
+            <li><span style="font-weight:bold">TS: </span>True Shooting % |</li>
+            <br>
+            <li><span style="font-weight:bold">REB: </span>Rebound Rate |</li>
+            <li><span style="font-weight:bold">AR: </span>Assist Ratio |</li>
+            <li><span style="font-weight:bold">TR: </span>Turnover Ratio</li>
+        </ul>
+    </div>
 </div>
 </body>
 <script>
@@ -74,6 +77,7 @@
         responsive: true
     } );
 } );
+
 
 
 </script>
