@@ -12,3 +12,4 @@ target/
 *.ipr
 /shelf/
 
+.DS_Store
