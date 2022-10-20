@@ -17,14 +17,14 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
     public ArrayList<Player> playersExtractData() {
         ArrayList<Player> playerList;
         try {
-            final Document page1 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/year/2022").get();
-            final Document page2 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/2/year/2022").get();
-            final Document page3 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/3/year/2022").get();
-            final Document page4 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/4/year/2022").get();
-            final Document page5 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/5/year/2022").get();
-            final Document page6 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/6/year/2022").get();
-            final Document page7 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/7/year/2022").get();
-            final Document page8 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/8/year/2022").get();
+            final Document page1 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics").get();
+            final Document page2 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/2").get();
+            final Document page3 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/3").get();
+            final Document page4 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/4").get();
+            final Document page5 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/5").get();
+            final Document page6 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/6").get();
+            final Document page7 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/7").get();
+            final Document page8 = Jsoup.connect("http://www.espn.com/nba/hollinger/statistics/_/page/8").get();
 
             Elements body1 = page1.select("table.tablehead tr");
             Elements body2 = page2.select("table.tablehead tr");
