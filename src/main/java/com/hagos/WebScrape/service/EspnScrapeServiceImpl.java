@@ -43,10 +43,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
@@ -58,10 +58,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
@@ -73,10 +73,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
@@ -88,10 +88,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
@@ -103,10 +103,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
@@ -118,10 +118,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
@@ -133,10 +133,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }
@@ -148,10 +148,10 @@ public class EspnScrapeServiceImpl implements EspnScrapeService {
                     newPlayer.setPlayerName(row.select("td:nth-of-type(2)").text());
                     newPlayer.setGamesPlayed(Integer.parseInt(row.select("td:nth-of-type(3)").text()));
                     newPlayer.setMinutesAverage(Double.parseDouble(row.select("td:nth-of-type(4)").text()));
+                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setTrueShooting(Double.parseDouble(row.select("td:nth-of-type(5)").text()));
                     newPlayer.setAssistRatio(Double.parseDouble(row.select("td:nth-of-type(6)").text()));
                     newPlayer.setTurnoverRatio(Double.parseDouble(row.select("td:nth-of-type(7)").text()));
-                    newPlayer.setPlayerEfficiencyRating(Double.parseDouble(row.select(".sortcell").text()));
                     newPlayer.setWinsAdded(Double.parseDouble(row.select("td:nth-of-type(14)").text()));
                     playerList.add(newPlayer);
                 }

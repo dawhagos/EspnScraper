@@ -34,10 +34,10 @@
             <th id="player_name" scope="col">NAME</th>
             <th id="player_gp" scope="col">GP</th>
             <th id="player_min" scope="col">MIN</th>
+            <th id="player_per" scope="col">PER</th>
             <th id="player_ts" scope="col">TS%</th>
             <th id="player_ar" scope="col">AR</th>
             <th id="player_tr" scope="col">TR</th>
-            <th id="player_per" scope="col">PER</th>
             <th id="player_wa" scope="col">WA</th>
         </tr>
         </thead>
@@ -46,10 +46,10 @@
             <td th:text="${player.playerName}"></td>
             <td th:text="${player.gamesPlayed}"></td>
             <td th:text="${player.minutesAverage}"></td>
+            <td th:text="${player.playerEfficiencyRating}"></td>
             <td th:text="${player.trueShooting}"></td>
             <td th:text="${player.assistRatio}"></td>
             <td th:text="${player.turnoverRatio}"></td>
-            <td th:text="${player.playerEfficiencyRating}"></td>
             <td th:text="${player.winsAdded}"></td>
         </tr>
         </tbody>
@@ -59,11 +59,11 @@
             Table Key:
             <li><span style="font-weight:bold">GP: </span>Games Played |</li>
             <li><span style="font-weight:bold">MIN: </span>Minutes Average |</li>
+            <li><span style="font-weight:bold">PER: </span>Player Efficiency Rating |</li>
+            <br>
             <li><span style="font-weight:bold">TS: </span>True Shooting |</li>
             <li><span style="font-weight:bold">AR: </span>Assist Ratio |</li>
-            <br>
             <li><span style="font-weight:bold">TR: </span>True Shooting % |</li>
-            <li><span style="font-weight:bold">PER: </span>Player Efficiency Rating |</li>
             <li><span style="font-weight:bold">WA: </span>Wins Added</li>
         </ul>
     </div>
@@ -73,9 +73,7 @@
 
         $(document).ready(function() {
         var table = $('#table_player').DataTable( {
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
+        rowReorder: true,
         responsive: true
     } );
 } );
